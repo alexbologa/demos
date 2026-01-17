@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8" />
+    <title>Declarație pe propria răspundere</title>
+
+    <!-- html2pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .page {
+            background: white;
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            color: #000;
+            line-height: 1.3;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            border: none;
+            border-bottom: 1px solid #000;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .inline-input {
+            display: inline-block;
+            width: 250px;
+        }
+
+        .small-input {
+            width: 150px;
+        }
+
+        .section-title {
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .signature {
+            margin-top: 40px;
+        }
+
+        button {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-row input {
+            width: 120px;
+            font-size: 13px;
+            margin: 0 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+<button onclick="downloadPDF()">📄 Descarcă PDF</button>
+
+<div class="page" id="pdf-content">
+
+    <h1>DECLARAȚIE PE PROPRIA RĂSPUNDERE</h1>
+
+    <div class="form-row">
+        <span>Data:</span>
+        <input type="text" placeholder="____ / ____ / 2026" style="width:100px;">
+        <span>Subsemnatul/a:</span>
+        <input type="text" placeholder="Nume și prenume" style="width:180px;">
+    </div>
+
+    <div class="form-row">
+        <span>CI/BI Seria:</span>
+        <input type="text" style="width:60px;">
+        <span>Nr.:</span>
+        <input type="text" style="width:80px;">
+        <span>CNP:</span>
+        <input type="text" style="width:140px;">
+    </div>
+
+    <p>
+        <em>*Părinte/Tutore al minorului (dacă este cazul)</em>
+        <input type="text">
+    </p>
+
+    <div class="section-title">Sportivii MAJORI</div>
+
+    <p>
+        Prin înscrierea și participarea la ANTRENAMENTELE și ACTIVITĂȚILE CLUBULUI SPORTIV
+        COMUNITAR SIBIU, indiferent de ramura sportivă, declar pe propria răspundere că:
+    </p>
+
+    <p>
+        1. Sunt apt/a fizic și psihic și am o pregătire fizică corespunzătoare pentru participarea
+        la aceste antrenamente, participând pe propria răspundere. Sunt conștient/a de riscurile
+        participării la aceste antrenamente, mi le asum în totalitate și exonerez de orice
+        răspundere organizatorul ASOCIAȚIA CLUBUL SPORTIV COMUNITAR SIBIU.
+    </p>
+
+    <p>
+        2. Am luat cunoștință de prevederile Regulamentului Clubului Sportiv Comunitar Sibiu,
+        ediția 2026.
+    </p>
+
+    <div class="section-title">Sportivii MINORI</div>
+
+    <p>
+        Prin înscrierea și participarea la ANTRENAMENTELE și ACTIVITĂȚILE CLUBULUI SPORTIV
+        COMUNITAR SIBIU declar pe propria răspundere că:
+    </p>
+
+    <p>
+        1. Fiul/fiica mea este apt/a fizic și psihic și are o pregătire fizică corespunzătoare pentru
+        participare, participând pe propria mea răspundere.
+    </p>
+
+    <p>
+        2. Fiul/fiica mea a luat cunoștință de prevederile Regulamentului Clubului Sportiv
+        Comunitar Sibiu, ediția 2026.
+    </p>
+
+    <p>
+        Concurenții peste 18 ani vor participa pe propria răspundere, iar cei minori numai cu
+        semnătura părintelui (tutorelui legal).
+    </p>
+
+    <p>
+        Declar că sunt de acord ca pozele, filmările, interviurile și materialele realizate în cadrul
+        antrenamentelor pot fi utilizate fără nicio pretenție.
+    </p>
+
+    <p><strong>Organizator:</strong> ASOCIAȚIA CLUBUL SPORTIV COMUNITAR SIBIU</p>
+
+    <div class="signature" style="display: flex; justify-content: space-between; align-items: center;">
+        <span>CONCURENT / PĂRINTE / TUTORE</span>
+        <span style="min-width: 220px; text-align: right;">Semnătura: __________________________</span>
+    </div>
+</div>
+
+<script>
+    function downloadPDF() {
+        const element = document.getElementById("pdf-content");
+
+        html2pdf()
+            .set({
+                margin: 10,
+                filename: "Declaratie_raspundere_2026.pdf",
+                image: { type: "jpeg", quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+            })
+            .from(element)
+            .save();
+    }
+</script>
+
+</body>
+</html>
