@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <title>Declarație pe propria răspundere</title>
 
+    <script>
+        window.onload = function() {
+            const today = new Date();
+            document.getElementById('data-input').value = today.toLocaleDateString('ro-RO');
+        };
+    </script>
     <!-- html2pdf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
@@ -86,9 +92,9 @@
 
     <div class="form-row">
         <span>Data:</span>
-        <input type="text" placeholder="____ / ____ / 2026" style="width:100px;">
+        <input id="data-input" type="text" placeholder="____ / ____ / 2026" style="width:100px;">
         <span>Subsemnatul/a:</span>
-        <input type="text" placeholder="Nume și prenume" style="width:180px;">
+        <input type="text" style="width:230px;">
     </div>
 
     <div class="form-row">
@@ -100,10 +106,12 @@
         <input type="text" style="width:140px;">
     </div>
 
-    <p>
-        <em>*Părinte/Tutore al minorului (dacă este cazul)</em>
-        <input type="text">
-    </p>
+    <div class="form-row">
+        <span>
+            <em>*Părinte/Tutore al minorului (dacă este cazul)</em>
+        </span>
+        <input type="text" style="width:230px;">
+    </div>
 
     <div class="section-title">Sportivii MAJORI</div>
 
