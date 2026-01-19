@@ -24,8 +24,8 @@
 
         .page {
             background: white;
-            max-width: 800px;
             width: 100%;
+            max-width: 100%;
             margin: auto;
             padding: 2.5rem;
             color: #000;
@@ -45,9 +45,6 @@
             border-bottom: 1px solid #000;
             width: 100%;
             font-size: 0.85rem;
-            min-width: 0;
-            max-width: 100%;
-            box-sizing: border-box;
         }
 
         .inline-input {
@@ -82,50 +79,29 @@
             gap: 1rem;
             align-items: center;
             margin-bottom: 0.6rem;
-            flex-wrap: wrap;
         }
         .form-row input {
             width: 7.5rem;
             font-size: 0.8rem;
             margin: 0 0.25rem;
-            min-width: 0;
-            max-width: 100%;
-        }
-
-        #download-btn {
-            position: fixed;
-            left: 50%;
-            bottom: 1.2rem;
-            transform: translateX(-50%);
-            background: #1976d2;
-            color: #fff;
-            border: none;
-            border-radius: 2rem;
-            box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
-            padding: 1rem 2.2rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            z-index: 1000;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        #download-btn:hover {
-            background: #125ea2;
         }
 
         @media (max-width: 600px) {
-            .page {
-                max-width: 100%;
+            body, .page {
+                font-size: 0.85rem;
                 padding: 0.5rem;
             }
-            .form-row {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.3rem;
+            .page {
+                padding: 1rem;
             }
-            .form-row input {
-                width: 100%;
-                margin: 0;
+            h1 {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 0.95rem;
+            }
+            button {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -133,7 +109,7 @@
 
 <body>
 
-<!--<button onclick="downloadPDF()">📄 Descarcă PDF</button>-->
+<button onclick="downloadPDF()">📄 Descarcă PDF</button>
 
 <div class="page" id="pdf-content">
 
@@ -219,30 +195,19 @@
 <script>
     function downloadPDF() {
         const element = document.getElementById("pdf-content");
-        const btn = document.getElementById("download-btn");
 
-        // Hide button and scroll to top
-        btn.style.display = "none";
-        window.scrollTo(0, 0);
-
-        setTimeout(() => {
-            html2pdf()
-                .set({
-                    margin: 10,
-                    filename: "Declaratie_raspundere_2026.pdf",
-                    image: { type: "jpeg", quality: 0.98 },
-                    html2canvas: { scale: 2 },
-                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-                })
-                .from(element)
-                .save()
-                .then(() => {
-                    btn.style.display = "block";
-                });
-        }, 300); // Wait for scroll and reflow
+        html2pdf()
+            .set({
+                margin: 10,
+                filename: "Declaratie_raspundere_2026.pdf",
+                image: { type: "jpeg", quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+            })
+            .from(element)
+            .save();
     }
 </script>
-<div style="height: 3.5rem;"></div>
-<button id="download-btn" onclick="downloadPDF()">📄 Descarcă PDF</button>
+
 </body>
 </html>
